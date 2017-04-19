@@ -35,6 +35,8 @@ public class JMStateMachine {
 			var State = enumerator.Current.Value;
 			State.InitState();
 		}
+
+		ChangeState("Idle");
 	}
 
 	public JMState GetState(string InStateName)

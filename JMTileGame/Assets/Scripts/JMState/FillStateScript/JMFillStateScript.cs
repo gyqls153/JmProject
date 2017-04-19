@@ -7,6 +7,6 @@ public class JMFillStateScript : MonoBehaviour {
 
 	public virtual void FillStates(JMStateMachine StateMachine)
 	{
-
+		StateMachine.SetDefaultStateName(DefaultStateName);
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JMFS_Stage1 : JMFillStateScript
+public class JMFS_Stage : JMFillStateScript
 {
 	public override void FillStates(JMStateMachine StateMachine)
 	{

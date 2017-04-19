@@ -113,7 +113,7 @@
     <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapUtils.cs" />
     <Compile Include="Assets\Scripts\JMGameInstance.cs" />
     <Compile Include="Assets\Scripts\JMPlayerController.cs" />
-    <Compile Include="Assets\Scripts\JMState\FillStateScript\JMFS_Stage1.cs" />
+    <Compile Include="Assets\Scripts\JMState\FillStateScript\JMFS_Stage.cs" />
     <Compile Include="Assets\Scripts\JMState\FillStateScript\JMFillStateScript.cs" />
     <Compile Include="Assets\Scripts\JMState\JMState.cs" />
     <Compile Include="Assets\Scripts\JMState\JMStateMachine.cs" />
