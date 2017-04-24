@@ -72,8 +72,7 @@ public class JMStateMachine {
 			if (NextStateName.Length > 0)
 			{
 				var NextState = GetState(NextStateName);
-				Assert.IsNull(NextState, "NextState Is Null " + NextStateName);
-
+				
 				NextStateName = string.Empty;
 
 				if (CurState != null)
