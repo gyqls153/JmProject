@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class JMState {
+public class JMState : JMNonMonoObject{
 	private string StateName;
+	protected JMMonoObject Owner;
 	
 	public void SetStateName(string InStateName)
 	{
@@ -14,17 +15,32 @@ public class JMState {
 		return StateName;
 	}
 
-	public virtual void InitState()
+	public virtual void InitState(JMMonoObject InOwner)
+	{
+		Owner = InOwner;
+	}
+
+	public JMStateMachine GetStateMachine()
+	{
+		return Owner.GetStateMachine();
+	}
+
+	public JMState GetCurState()
+	{
+		return GetStateMachine().GetCurState();
+	}
+
+	public void ChangeState(string ChangeStateName)
+	{
+		GetStateMachine().ChangeState(ChangeStateName);
+	}
+
+	public virtual void BeginState(string InPrevStateName)
 	{
 
 	}
 
-	public virtual void BeginState()
-	{
-
-	}
-
-	public virtual void EndState()
+	public virtual void EndState(string InNextStateName)
 	{
 
 	}

@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 
-public class JMStateMachine {
+public class JMStateMachine : JMNonMonoObject{
     private Dictionary<string, JMState> States = new Dictionary<string, JMState>();
 
 	private JMState CurState;
+	protected JMMonoObject Owner;
 
-	private string DefaultStateName;
-	private string NextStateName;
+	private string DefaultStateName = "";
+	private string NextStateName = "";
 
 	public void SetDefaultStateName(string InDefaultStateName)
 	{
@@ -27,16 +28,23 @@ public class JMStateMachine {
 		States.Add(InStateName, InState);
     }
 
-	public void InitStates()
+	public JMState GetCurState()
 	{
+		return CurState;
+	}
+
+	public void InitStates(JMMonoObject InOwner)
+	{
+		Owner = InOwner;
+
 		var enumerator = States.GetEnumerator();
 		while(enumerator.MoveNext())
 		{
 			var State = enumerator.Current.Value;
-			State.InitState();
+			State.InitState(InOwner);
 		}
 
-		ChangeState("Idle");
+		ChangeState(DefaultStateName);
 	}
 
 	public JMState GetState(string InStateName)
@@ -48,6 +56,16 @@ public class JMStateMachine {
 		}
 
 		return States[InStateName];
+	}
+
+	public override void OnPressed()
+	{
+		GetCurState().OnPressed();
+	}
+
+	public override void OnReleased()
+	{
+		GetCurState().OnReleased();
 	}
 
 	public bool HasState(string InStateName)
@@ -69,24 +87,28 @@ public class JMStateMachine {
 	{
 		while (true)
 		{
-			if (NextStateName.Length > 0)
+			if (NextStateName != null && NextStateName.Length > 0)
 			{
 				var NextState = GetState(NextStateName);
-				
+
+				var LocalNextStateName = NextStateName;
+				var LocalCurStateName = string.Empty;
+
 				NextStateName = string.Empty;
 
 				if (CurState != null)
 				{
-					CurState.EndState();
+					CurState.EndState(LocalNextStateName);
+					LocalCurStateName = CurState.GetStateName();
 				}
 
 				CurState = NextState;
-				CurState.BeginState();
+				CurState.BeginState(LocalCurStateName);
 			}
 			
 			CurState.Tick(InDeltaTime);
 
-			if (0 >= NextStateName.Length)
+			if (NextStateName == null || 0 >= NextStateName.Length)
 				break;
 		}
 	}

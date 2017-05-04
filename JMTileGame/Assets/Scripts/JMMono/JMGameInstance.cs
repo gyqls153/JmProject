@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DisallowMultipleComponent]
-public class JMGameInstance : MonoBehaviour {
+public class JMGameInstance : JMMonoBehaviour
+{
 
 	private static JMGameInstance GameInstance;
 	
@@ -26,7 +27,6 @@ public class JMGameInstance : MonoBehaviour {
 		if (PlayerControllerObject != null)
 		{
 			PlayerController = PlayerControllerObject.GetComponent<JMPlayerController>();
-			PlayerController.Init();
 		}
 
 		GameInstance = this;
