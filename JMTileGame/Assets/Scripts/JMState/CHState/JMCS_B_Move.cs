@@ -23,8 +23,18 @@ public class JMCS_B_Move : JMCharacterState
 		// 움직임 적용
 		Owner.transform.position += MoveVector;
 
-		Vector3 NewPosition = Owner.transform.position;
-		NewPosition.z = Camera.main.transform.position.z;
-		Camera.main.transform.position = NewPosition;
+		Vector3 NewCamPosition = Camera.main.transform.position;
+		NewCamPosition.y += MoveVector.y;
+		Camera.main.transform.position = NewCamPosition;
+	}
+
+	public override void OnCollisionEnter2D(Collision2D other)
+	{
+		base.OnCollisionEnter2D(other);
+
+		if (other.gameObject.CompareTag("Coin"))
+		{
+			other.gameObject.SetActive(false);
+		}
 	}
 }

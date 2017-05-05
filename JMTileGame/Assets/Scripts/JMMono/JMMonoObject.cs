@@ -27,6 +27,37 @@ public class JMMonoObject : JMMonoBehaviour
 	{
 		return StateMachine;
 	}
+	
+
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		OnCollisionEnter2D_Internal(other);
+	}
+
+	void OnCollisionStay2D(Collision2D other)
+	{
+		OnCollisionStay2D_Internal(other);
+	}
+
+	void OnCollisionExit2D(Collision2D other)
+	{
+		OnCollisionExit2D_Internal(other);
+	}
+
+	protected virtual void OnCollisionEnter2D_Internal(Collision2D other)
+	{
+		StateMachine.GetCurState().OnCollisionEnter2D(other);
+	}
+
+	protected virtual void OnCollisionStay2D_Internal(Collision2D other)
+	{
+		StateMachine.GetCurState().OnCollisionStay2D(other);
+	}
+
+	protected virtual void OnCollisionExit2D_Internal(Collision2D other)
+	{
+		StateMachine.GetCurState().OnCollisionExit2D(other);
+	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{

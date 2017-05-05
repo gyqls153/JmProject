@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\JMMono\JMMonoObject.cs" />
     <Compile Include="Assets\Scripts\JMMono\JMPlayerController.cs" />
     <Compile Include="Assets\Scripts\JMNonMono\JMNonMonoObject.cs" />
+    <Compile Include="Assets\Scripts\JMState\CHState\JMCS_B_Dead.cs" />
     <Compile Include="Assets\Scripts\JMState\CHState\JMCS_B_Idle.cs" />
     <Compile Include="Assets\Scripts\JMState\CHState\JMCS_B_Move.cs" />
     <Compile Include="Assets\Scripts\JMState\CHState\JMCS_B_MoveToForward.cs" />
